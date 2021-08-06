@@ -25,6 +25,9 @@ class Board(Input_processor):
     def __init__(self):
         self.board = [["A","K","C","H"],
                       ["D","E","B","I"],
+                      ["J","G","F"," "]] # main board
+        self.temp_board = [["A","K","C","H"],
+                      ["D","E","B","I"],
                       ["J","G","F"," "]]
 
     def display_board(self):
@@ -34,8 +37,10 @@ class Board(Input_processor):
 
         for i in range(len(b1)):
             for j in range(len(b2)):
-                sys.stdout.write(self.board[b1[i]][b2[j]] + "  ")
+                self.board[i][j] = self.temp_board[b1[i]][b2[j]]
+                sys.stdout.write(self.board[i][j] + "  ")
             print("\n")
+        # print("BOARD" , self.board)
 
     def check_winner(self):
         if(self.board == [["A","B","C","D"],["E","F","G","H"],["I","J","K"," "]]):
