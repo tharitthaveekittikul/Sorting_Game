@@ -7,15 +7,17 @@ class Input_processor:
 
     
     def Input_checker(self):
-        try:
-            self.charactor = input("Move: ")
-            if((self.charactor).upper() in ["A","B","C","D","E","F","G","H","I","J","K"]):
-                print("OK")
-            else:
-                print("Please put the charactor only A-K.")
+        while True:
+            try:
+                self.charactor = input("Move: ")
+                if((self.charactor).upper() in ["A","B","C","D","E","F","G","H","I","J","K"]):
+                    print("OK")
+                    break
+                else:
+                    print("Please put the charactor only A-K.")
 
-        except:
-            print("Please put the charactor A-K only.")
+            except:
+                print("Please put the charactor A-K only.")
 
 
 class Board(Input_processor):
@@ -39,12 +41,15 @@ class Board(Input_processor):
         if(self.board == [["A","B","C","D"],["E","F","G","H"],["I","J","K"," "]]):
             print("Win!")
 
+    def change_position(self):
+        i = Input_processor()
+        i.Input_checker()
+
 
 if __name__ == '__main__':
     print("Welcome to Sorting Game")
     b = Board()
-    i = Input_processor()
     b.display_board()
-    i.Input_checker()
+    b.change_position()
     b.check_winner()
 
