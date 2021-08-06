@@ -11,7 +11,7 @@ class Input_processor:
             try:
                 self.charactor = input("Move: ")
                 if((self.charactor).upper() in ["A","B","C","D","E","F","G","H","I","J","K"]):
-                    print("OK")
+                    # print("OK")
                     break
                 else:
                     print("Please put the charactor only A-K.")
@@ -23,24 +23,23 @@ class Input_processor:
 class Board(Input_processor):
 
     def __init__(self):
-        self.board = [["A","K","C","H"],
-                      ["D","E","B","I"],
-                      ["J","G","F"," "]] # main board
-        self.temp_board = [["A","K","C","H"],
-                      ["D","E","B","I"],
-                      ["J","G","F"," "]]
+        self.board = [["A","B","C","D"],
+                      ["E","F","G","H"],
+                      ["I","J","K"," "]] # main board
 
     def display_board(self):
 
-        b1 = rd.sample(range(3),3)
-        b2 = rd.sample(range(4),4)
-
-        for i in range(len(b1)):
-            for j in range(len(b2)):
-                self.board[i][j] = self.temp_board[b1[i]][b2[j]]
+        charactor_list = ["A","B","C","D","E","F","G","H","I","J","K"," "]
+        cha_rd = rd.sample(charactor_list,12)
+        # print(cha_rd)
+        for i in range(3):
+            for j in range(4):
+                self.board[i][j] = cha_rd[j-3]
+                cha_rd.remove(self.board[i][j])
                 sys.stdout.write(self.board[i][j] + "  ")
             print("\n")
-        # print("BOARD" , self.board)
+               
+
 
     def check_winner(self):
         if(self.board == [["A","B","C","D"],["E","F","G","H"],["I","J","K"," "]]):
